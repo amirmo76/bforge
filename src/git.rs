@@ -3,6 +3,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
+use colored::Colorize;
 use directories::ProjectDirs;
 use git2::{Repository, ResetType};
 
@@ -18,7 +19,7 @@ pub fn get_cache_dir() -> Result<PathBuf, git2::Error> {
 pub fn ensure_repo_cached(repo: &str, cache_dir: &Path) -> Result<PathBuf, git2::Error> {
     let folder_name = sanitize_repo_name_to_folder(repo);
     let repo_path = cache_dir.join(folder_name);
-    dbg!(&repo_path);
+    println!("Caching repo {} to {:?}", repo.dimmed(), repo_path);
 
     if !cache_dir.exists() {
         fs::create_dir_all(&cache_dir).map_err(|e| git2::Error::from_str(&e.to_string()))?;
@@ -27,13 +28,11 @@ pub fn ensure_repo_cached(repo: &str, cache_dir: &Path) -> Result<PathBuf, git2:
     if repo_path.exists() {
         // Repo already cached
         let repo = Repository::open(&repo_path)?;
-        dbg!(&repo_path);
         update_repo(&repo)?;
         Ok(repo_path)
     } else {
         // Clone the repo
         let url = get_url(repo);
-        dbg!(&url);
         Repository::clone(&url, &repo_path)?;
         Ok(repo_path)
     }

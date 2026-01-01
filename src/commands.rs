@@ -45,11 +45,14 @@ pub fn handle_add(repo_input: &str, item_name: &str) -> Result<(), Box<dyn std::
     // Cache dir
     let cache_dir = git::get_cache_dir()?;
 
-    // 2. Cache Repo (using your git module)
+    // Cache Repo (using your git module)
     let repo_path = git::ensure_repo_cached(&repo_input, &cache_dir)?;
 
-    // 3. Load Manifest
-    let manifest = manifest::load_manifest(&repo_path)?;
+    // Manifest Path
+    let manifest_path = Path::new(&repo_path).join("bforge.json");
+
+    // Load Manifest
+    let manifest = manifest::load_manifest(&manifest_path)?;
 
     // 4. Install Item (Recursive)
     let mut installed = HashSet::new();

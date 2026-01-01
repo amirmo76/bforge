@@ -1,6 +1,6 @@
 [package]
 name = "bforge"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2024"
 
 description = "A decentralized source-code installer that maps files from remote git repositories into your project structure."
