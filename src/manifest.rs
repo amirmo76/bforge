@@ -31,7 +31,7 @@ pub struct FileMapping {
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct UserConfig {
-    aliases: HashMap<String, String>,
+    pub aliases: HashMap<String, String>,
 }
 
 // load manifest from a json file

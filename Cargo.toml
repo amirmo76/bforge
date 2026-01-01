@@ -8,7 +8,8 @@ license = "MIT"
 repository = "https://github.com/amirmo76/bforge"
 
 [dependencies]
-clap = "4.5.53"
+clap = { version = "4.5.53", features = ["derive"] }
+colored = "3.0.0"
 directories = "6.0.0"
 git2 = { version = "0.20.3", features = ["ssh"] }
 reqwest = "0.13.1"
