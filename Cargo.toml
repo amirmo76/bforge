@@ -1,7 +1,10 @@
 [package]
 name = "bforge"
 version = "0.0.1"
-license = "MIT"
 edition = "2024"
+
+description = "A decentralized source-code installer that maps files from remote git repositories into your project structure."
+license = "MIT"
+repository = "https://github.com/amirmo76/bforge"
 
 [dependencies]
